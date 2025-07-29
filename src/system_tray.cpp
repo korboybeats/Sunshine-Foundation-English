@@ -134,7 +134,7 @@ namespace system_tray {
     int msgboxID = MessageBoxW(
       NULL,
       L"Are you sure you want to exit Sunshine?",
-      L" Exit Sunshine",
+      L" Sunshine",
       MB_ICONWARNING | MB_OKCANCEL);
 
     if (msgboxID == IDOK) {
