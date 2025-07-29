@@ -10,7 +10,7 @@
           href="https://docs.qq.com/aio/DSGdQc3htbFJjSFdO"
           target="_blank"
         >
-          <i class="fas fa-fw fa-file-alt"></i> Resources</a
+          <i class="fas fa-fw fa-file-alt"></i> User Guide</a
         >
         <a
           class="btn btn-primary m-1"

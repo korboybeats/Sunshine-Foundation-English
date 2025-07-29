@@ -439,7 +439,7 @@
   },
   "welcome": {
     "confirm_password": "Confirm password",
-    "create_creds": "Before Getting Started, we need you to make a new username and password for accessing the Web UI.",
+    "create_creds": "Before getting started, we need you to make a new username and password for accessing the Web UI.",
     "create_creds_alert": "The credentials below are needed to access Sunshine's Web UI. Keep them safe, since you will never see them again!",
     "greeting": "Welcome to Sunshine!",
     "login": "Login",
