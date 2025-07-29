@@ -136,7 +136,7 @@ export default {
       if (this.type === 'prep') {
         return this.$t('apps.cmd_prep_desc');
       }
-      return 'After configuration, it is visible in the client's return menu. It allows quick execution of specific actions without interrupting the stream, such as calling up auxiliary programs.\nExample: Display name - Close Your App; Command - shutdown -s -t 10';
+      return `After configuration, it is visible in the client's return menu. It allows quick execution of specific actions without interrupting the stream, such as calling up auxiliary programs.\nExample: Display name - Close Your App; Command - shutdown -s -t 10`;
     },
     addButtonText() {
       return this.type === 'prep' ? this.$t('apps.add_cmds') : 'Add Menu Command';
