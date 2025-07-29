@@ -10,29 +10,28 @@
           href="https://docs.qq.com/aio/DSGdQc3htbFJjSFdO"
           target="_blank"
         >
-          <i class="fas fa-fw fa-file-alt"></i> 使用教程</a
+          <i class="fas fa-fw fa-file-alt"></i> Resources</a
         >
         <a
           class="btn btn-primary m-1"
           href="https://qm.qq.com/q/3tWBFVNZ"
           target="_blank"
         >
-          <i class="fab fa-fw fa-qq"></i> 加入串流裙</a
+          <i class="fab fa-fw fa-qq"></i> Join My QQ Group</a
         >
         <a
           class="btn btn-secondary m-1"
           href="https://github.com/qiin2333/Sunshine-Foundation"
           target="_blank"
         >
-          <i class="fab fa-fw fa-github"></i>Follow Github</a
+          <i class="fab fa-fw fa-github"></i> Github</a
         >
         <a
           class="btn btn-secondary m-1"
           href="https://github.com/qiin2333/moonlight-android/releases/tag/shortcut"
           target="_blank"
         >
-          <i class="fab fa-fw fa-github"></i> 威力加强版 Moonlight-Android
-          下载</a
+          <i class="fab fa-fw fa-github"></i> Moonlight Power Enhanced Edition for Android</a
         >
         <a
           class="btn btn-secondary m-1"
@@ -46,16 +45,14 @@
           href="https://github.com/WACrown/moonlight-android"
           target="_blank"
         >
-          <i class="fab fa-fw fa-github"></i> 王冠版 Moonlight-Android
-          下载</a
+          <i class="fab fa-fw fa-github"></i> Moonlight Crown Version for Android</a
         >
         <a
           class="btn btn-secondary m-1"
           href="https://github.com/TrueZhuangJia/moonlight-ios-NativeMultiTouchPassthrough"
           target="_blank"
         >
-          <i class="fab fa-fw fa-github"></i> 真砖家版 Moonlight-iOS
-          下载</a
+          <i class="fab fa-fw fa-github"></i> Moonlight Expert Edition for iOS</a
         >
       </div>
     </div>
