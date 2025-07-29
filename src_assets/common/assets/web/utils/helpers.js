@@ -55,7 +55,7 @@ export function safeJsonParse(str, defaultValue = null) {
   try {
     return JSON.parse(str);
   } catch (error) {
-    console.warn('JSON解析失败:', error);
+    console.warn('JSON parsing failed:', error);
     return defaultValue;
   }
 }
@@ -68,7 +68,7 @@ export function safeJsonParse(str, defaultValue = null) {
 export function formatError(error) {
   if (typeof error === 'string') return error;
   if (error && error.message) return error.message;
-  return '未知错误';
+  return 'Unknown error';
 }
 
 /**

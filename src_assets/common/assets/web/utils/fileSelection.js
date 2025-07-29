@@ -193,12 +193,12 @@ export class FileSelector {
           callback(fieldName, dirPath);
         }
         
-        this.onSuccess(`目录选择成功: ${dirPath}`);
+        this.onSuccess(`Directory selection succeeded: ${dirPath}`);
         return dirPath;
       }
     } catch (error) {
-      console.error('目录选择失败:', error);
-      this.onError('目录选择失败，请手动输入路径');
+      console.error('Directory selection failed:', error);
+      this.onError('Directory selection failed, please enter the path manually');
     }
     
     this.resetState();
