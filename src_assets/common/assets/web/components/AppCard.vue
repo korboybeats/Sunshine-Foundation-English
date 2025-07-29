@@ -27,7 +27,7 @@
             <i class="fas fa-ellipsis-h me-1"></i>全局预处理命令
           </span>
           <span v-if="app['menu-cmd'] && app['menu-cmd'].length > 0" class="app-tag tag-menu">
-            <span class="badge rounded-pill bg-secondary me-1">{{ app['menu-cmd'].length }}</span>菜单命令
+            <span class="badge rounded-pill bg-secondary me-1">{{ app['menu-cmd'].length }}</span>Menu Command
           </span>
           <span v-if="app.elevated && app.elevated !== 'false'" class="app-tag tag-elevated">
             <i class="fas fa-shield-alt me-1"></i>管理员

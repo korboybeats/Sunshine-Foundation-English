@@ -27,14 +27,14 @@
         </thead>
         <tbody>
           <tr v-for="(command, index) in commands" :key="getCommandKey(command, index)">
-            <!-- 准备命令字段 -->
+            <!-- Prepare command field -->
             <template v-if="type === 'prep'">
               <td>
                 <input 
                   type="text" 
                   class="form-control form-control-sm monospace" 
                   v-model="command.do" 
-                  placeholder="执行命令"
+                  placeholder="Execute Command"
                 />
               </td>
               <td>
@@ -42,19 +42,19 @@
                   type="text" 
                   class="form-control form-control-sm monospace" 
                   v-model="command.undo" 
-                  placeholder="撤销命令"
+                  placeholder="Undo Command"
                 />
               </td>
             </template>
             
-            <!-- 菜单命令字段 -->
+            <!-- Menu command field -->
             <template v-if="type === 'menu'">
               <td>
                 <input 
                   type="text" 
                   class="form-control form-control-sm" 
                   v-model="command.name" 
-                  placeholder="显示名称"
+                  placeholder="Display name"
                 />
               </td>
               <td>
@@ -62,12 +62,12 @@
                   type="text" 
                   class="form-control form-control-sm monospace" 
                   v-model="command.cmd" 
-                  placeholder="命令"
+                  placeholder="Command"
                 />
               </td>
             </template>
             
-            <!-- Windows权限设置 -->
+            <!-- Windows Permission Settings -->
             <td v-if="platform === 'windows'">
               <div class="form-check">
                 <input 
@@ -84,13 +84,13 @@
               </div>
             </td>
             
-            <!-- 操作按钮 -->
+            <!-- Action Button -->
             <td>
               <button 
                 type="button" 
                 class="btn btn-outline-danger btn-sm" 
                 @click="removeCommand(index)"
-                :title="type === 'prep' ? '删除准备命令' : '删除菜单命令'"
+                :title="type === 'prep' ? '删除准备命令' : 'Delete Menu Command'"
               >
                 <i class="fas fa-trash"></i>
               </button>
@@ -130,16 +130,16 @@ export default {
   },
   computed: {
     tableTitle() {
-      return this.type === 'prep' ? this.$t('apps.cmd_prep_name') : '炒鸡菜单命令';
+      return this.type === 'prep' ? this.$t('apps.cmd_prep_name') : 'Super Menu Command';
     },
     tableDescription() {
       if (this.type === 'prep') {
         return this.$t('apps.cmd_prep_desc');
       }
-      return '配置后在客户端返回菜单中可见，用于在不打断串流的情况下快速执行特定操作，例如调出辅助程序。\n示例：展示名称-关闭你的颠佬；指令-shutdown -s -t 10';
+      return 'After configuration, it is visible in the client's return menu. It allows quick execution of specific actions without interrupting the stream, such as calling up auxiliary programs.\nExample: Display name - Close Your App; Command - shutdown -s -t 10';
     },
     addButtonText() {
-      return this.type === 'prep' ? this.$t('apps.add_cmds') : '添加菜单命令';
+      return this.type === 'prep' ? this.$t('apps.add_cmds') : 'Add Menu Command';
     }
   },
   methods: {

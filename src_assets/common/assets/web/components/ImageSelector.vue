@@ -141,7 +141,7 @@ export default {
     handleDragEnter(event) {
       event.preventDefault()
       this.dragCounter++
-      this.$emit('image-error', '杂鱼~快放进来呀~')
+      this.$emit('image-error', 'ENGLISH')
     },
 
     /**

@@ -5,7 +5,7 @@
         <div class="modal-header">
           <h5 class="modal-title" id="editAppModalLabel">
             <i class="fas fa-edit me-2"></i>
-            {{ isNewApp ? '添加新应用' : '编辑应用' }}
+            {{ isNewApp ? '添加新应用' : 'Edit application' }}
           </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
@@ -17,11 +17,11 @@
           <form @submit.prevent="saveApp" v-if="formData">
             <!-- 基础信息手风琴 -->
             <div class="accordion" id="appFormAccordion">
-              <!-- 基本信息 -->
+              <!-- Basic information -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="basicInfoHeading">
                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#basicInfoCollapse" aria-expanded="true" aria-controls="basicInfoCollapse">
-                    <i class="fas fa-info-circle me-2"></i>基本信息
+                    <i class="fas fa-info-circle me-2"></i>Basic information
                   </button>
                 </h2>
                 <div id="basicInfoCollapse" class="accordion-collapse collapse show" aria-labelledby="basicInfoHeading" data-bs-parent="#appFormAccordion">
@@ -42,7 +42,7 @@
                         {{ validation.name.message }}
                       </div>
                       <div v-if="validation.name && validation.name.isValid && formData.name" class="valid-feedback">
-                        应用名称有效
+                        Application name is valid
                       </div>
                       <div class="field-hint">{{ $t('apps.app_name_desc') }}</div>
                     </div>
@@ -119,11 +119,11 @@
                 </div>
               </div>
 
-              <!-- 命令设置 -->
+              <!-- Command Settings -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="commandsHeading">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#commandsCollapse" aria-expanded="false" aria-controls="commandsCollapse">
-                    <i class="fas fa-terminal me-2"></i>命令设置
+                    <i class="fas fa-terminal me-2"></i>Command Settings
                   </button>
                 </h2>
                 <div id="commandsCollapse" class="accordion-collapse collapse" aria-labelledby="commandsHeading" data-bs-parent="#appFormAccordion">
@@ -155,7 +155,7 @@
                       @remove-command="removePrepCommand"
                     />
 
-                    <!-- 菜单命令 -->
+                    <!-- Menu Commands -->
                     <CommandTable 
                       :commands="formData['menu-cmd']" 
                       :platform="platform"
@@ -174,11 +174,11 @@
                 </div>
               </div>
 
-              <!-- 高级选项 -->
+              <!-- Advanced Options -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="advancedHeading">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#advancedCollapse" aria-expanded="false" aria-controls="advancedCollapse">
-                    <i class="fas fa-cogs me-2"></i>高级选项
+                    <i class="fas fa-cogs me-2"></i>Advanced Options
                   </button>
                 </h2>
                 <div id="advancedCollapse" class="accordion-collapse collapse" aria-labelledby="advancedHeading" data-bs-parent="#appFormAccordion">
@@ -234,11 +234,11 @@
                 </div>
               </div>
 
-              <!-- 图片设置 -->
+              <!-- Image Settings -->
               <div class="accordion-item">
                 <h2 class="accordion-header" id="imageHeading">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#imageCollapse" aria-expanded="false" aria-controls="imageCollapse">
-                    <i class="fas fa-image me-2"></i>图片设置
+                    <i class="fas fa-image me-2"></i>Image Settings
                   </button>
                 </h2>
                 <div id="imageCollapse" class="accordion-collapse collapse" aria-labelledby="imageHeading" data-bs-parent="#appFormAccordion">
@@ -258,10 +258,10 @@
         <div class="modal-footer modal-footer-enhanced">
           <div class="save-status">
             <span v-if="isFormValid" class="text-success">
-              <i class="fas fa-check-circle me-1"></i>合规应用
+              <i class="fas fa-check-circle me-1"></i>Compliant application
             </span>
             <span v-else class="text-warning">
-              <i class="fas fa-exclamation-triangle me-1"></i>请检查必填字段
+              <i class="fas fa-exclamation-triangle me-1"></i>Please check required fields
             </span>
             <div v-if="imageError" class="text-danger mt-1">
               <i class="fas fa-exclamation-circle me-1"></i>{{ imageError }}

@@ -43,7 +43,7 @@
           class="cute-btn cute-btn-secondary" 
           data-bs-toggle="modal" 
           data-bs-target="#envVarsModal"
-          :title="'环境变量说明'"
+          :title="'Environment variable description'"
         >
           <i class="fas fa-info-circle"></i>
         </button>
@@ -141,7 +141,7 @@
       </button>
     </div>
 
-    <!-- 环境变量说明模态框 -->
+    <!-- Environment variable description modal -->
     <div class="modal fade" id="envVarsModal" tabindex="-1">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -164,7 +164,7 @@
                   <thead>
                     <tr>
                       <th><strong>{{ $t('apps.env_var_name') }}</strong></th>
-                      <th><strong>说明</strong></th>
+                      <th><strong>Description</strong></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -353,7 +353,7 @@
       },
       
       /**
-       * 编辑应用
+       * Edit application
        */
       editApp(index) {
         this.editingApp = deepClone(this.apps[index]);
