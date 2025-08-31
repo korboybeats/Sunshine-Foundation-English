@@ -31,7 +31,7 @@ install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/assets/web"
         DESTINATION "${SUNSHINE_ASSETS_DIR}")
 
 # install sunshine control panel
-install(DIRECTORY "${SUNSHINE_SOURCE_ASSETS_DIR}/common/sunshine-control-panel/dist/win-unpacked/"
+install(DIRECTORY "${SUNSHINE_SOURCE_ASSETS_DIR}/common/Sunshine-Control-Panel-English/dist/win-unpacked/"
         DESTINATION "${SUNSHINE_ASSETS_DIR}/gui")
 
 # platform specific packaging

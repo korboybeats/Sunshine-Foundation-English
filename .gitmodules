@@ -70,7 +70,7 @@
 	path = third-party/wlr-protocols
 	url = https://github.com/LizardByte-infrastructure/wlr-protocols.git
 	branch = master
-[submodule "src_assets/common/sunshine-control-panel"]
-	path = src_assets/common/sunshine-control-panel
-	url = https://github.com/qiin2333/sunshine-control-panel.git
+[submodule "src_assets/common/Sunshine-Control-Panel-English"]
+	path = src_assets/common/Sunshine-Control-Panel-English
+	url = https://github.com/korboybeats/Sunshine-Control-Panel-English.git
 	branch = master
