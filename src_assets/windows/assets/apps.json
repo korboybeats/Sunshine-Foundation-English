@@ -12,7 +12,7 @@
       "menu-cmd": [
         {
           "id": "kcENAT5r9P",
-          "name": "打开触摸键盘",
+          "name": "Open Touch Keyboard",
           "cmd": ".\\tools\\qiin-tabtip.exe",
           "elevated": "false"
         },
@@ -38,12 +38,12 @@
       "image-path": "steam.png"
     },
     {
-      "name": "禁用虚拟显示器",
+      "name": "Disable Virtual Display",
       "cmd": ".\\tools\\device-toggler.exe 2 2 \"Zako Display Adapter\"",
       "elevated": "true"
     },
     {
-      "name": "安全模式重启Sunshine",
+      "name": "Restart Sunshine in Safe Mode",
       "cmd": ".\\Sunshine.exe -1"
     }
   ]
