@@ -1,5 +1,20 @@
 # Sunshine Foundation Edition
 
+## 🌐 多语言支持 / Multi-language Support
+
+<div align="center">
+
+[![English](https://img.shields.io/badge/English-README.en.md-blue?style=for-the-badge)](README.en.md)
+[![中文简体](https://img.shields.io/badge/中文简体-README.zh--CN.md-red?style=for-the-badge)](README.md)
+[![Français](https://img.shields.io/badge/Français-README.fr.md-green?style=for-the-badge)](README.fr.md)
+[![Deutsch](https://img.shields.io/badge/Deutsch-README.de.md-yellow?style=for-the-badge)](README.de.md)
+[![日本語](https://img.shields.io/badge/日本語-README.ja.md-purple?style=for-the-badge)](README.ja.md)
+
+</div>
+
+---
+
+
 A fork based on LizardByte/Sunshine, providing comprehensive documentation support [Read the Docs](https://docs.qq.com/aio/DSGdQc3htbFJjSFdO?p=YTpMj5JNNdB5hEKJhhqlSB).
 
 **Sunshine-Foundation** is a self-hosted game stream host for Moonlight. This forked version introduces significant improvements over the original Sunshine, focusing on enhancing the game streaming experience for various client devices connected to Windows hosts:
