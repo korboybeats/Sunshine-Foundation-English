@@ -644,7 +644,7 @@ namespace nvhttp {
 
         sess.client.uniqueID = std::move(uniqID);
         sess.client.cert = util::from_hex_vec(get_arg(args, "clientcert"), true);
-        last_pair_name = get_arg(args, "clientname", "Named Zako");
+        last_pair_name = get_arg(args, "clientname", "Sunshine");
 
         BOOST_LOG(verbose) << "Client cert: " << sess.client.cert.substr(0, 100) << "...";
         auto ptr = map_id_sess.emplace(sess.client.uniqueID, std::move(sess)).first;

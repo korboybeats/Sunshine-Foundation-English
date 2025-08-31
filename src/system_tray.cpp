@@ -133,8 +133,8 @@ namespace system_tray {
   #ifdef _WIN32
     int msgboxID = MessageBoxW(
       NULL,
-      L"你不能退出!\n那么想退吗? 真拿你没办法呢, 继续点一下吧~",
-      L" 真的要退出吗",
+      L"Are you sure you want to exit?",
+      L"Exit",
       MB_ICONWARNING | MB_OKCANCEL);
 
     if (msgboxID == IDOK) {

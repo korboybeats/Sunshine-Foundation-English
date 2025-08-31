@@ -48,20 +48,20 @@ namespace display_device {
       for (int attempt = 0; attempt < kMaxRetryCount; ++attempt) {
         auto child = platf::run_command(true, true, cmd, working_dir, _env, nullptr, ec, nullptr);
         if (!ec) {
-          BOOST_LOG(info) << "成功执行VDD " << action << " 命令";
+          BOOST_LOG(info) << "Successfully executed VDD " << action << " command";
           child.detach();
           return true;
         }
 
         auto delay = calculate_exponential_backoff(attempt);
-        BOOST_LOG(warning) << "执行VDD " << action << " 命令失败 (尝试 "
+        BOOST_LOG(warning) << "Failed to execute VDD " << action << " command (attempt "
                            << (attempt + 1) << "/" << kMaxRetryCount
-                           << "): " << ec.message() << ". 将在 "
-                           << delay.count() << "ms 后重试";
+                           << "): " << ec.message() << ". Retrying in "
+                           << delay.count() << "ms";
         std::this_thread::sleep_for(delay);
       }
 
-      BOOST_LOG(error) << "执行VDD " << action << " 命令失败，已达到最大重试次数";
+      BOOST_LOG(error) << "Failed to execute VDD " << action << " command. Maximum retry attempts reached.";
       return false;
     }
 
@@ -100,7 +100,7 @@ namespace display_device {
     execute_pipe_command(const wchar_t *pipe_name, const wchar_t *command, std::string *response) {
       auto hPipe = connect_to_pipe_with_retry(pipe_name);
       if (hPipe == INVALID_HANDLE_VALUE) {
-        BOOST_LOG(error) << "连接MTT虚拟显示管道失败，已重试多次";
+        BOOST_LOG(error) << "Failed to connect to MTT virtual display pipe after multiple retries.";
         return false;
       }
 
@@ -120,14 +120,14 @@ namespace display_device {
       size_t cmd_len = (wcslen(command) + 1) * sizeof(wchar_t);  // 包含终止符
       if (!WriteFile(hPipe, command, (DWORD) cmd_len, &bytesWritten, &overlapped)) {
         if (GetLastError() != ERROR_IO_PENDING) {
-          BOOST_LOG(error) << L"发送" << command << L"命令失败，错误代码: " << GetLastError();
+          BOOST_LOG(error) << L"Sending " << command << L" command failed. Error code: " << GetLastError();
           return false;
         }
 
         // 等待写入完成
         DWORD waitResult = WaitForSingleObject(overlapped.hEvent, kPipeTimeoutMs);
         if (waitResult != WAIT_OBJECT_0) {
-          BOOST_LOG(error) << L"发送" << command << L"命令超时";
+          BOOST_LOG(error) << L"Sending " << command << L" command timed out";
           return false;
         }
       }
@@ -138,7 +138,7 @@ namespace display_device {
         DWORD bytesRead;
         if (!ReadFile(hPipe, buffer, sizeof(buffer), &bytesRead, &overlapped)) {
           if (GetLastError() != ERROR_IO_PENDING) {
-            BOOST_LOG(warning) << "读取响应失败，错误代码: " << GetLastError();
+            BOOST_LOG(warning) << "Failed to read response. Error code: " << GetLastError();
             return false;
           }
 
@@ -163,13 +163,13 @@ namespace display_device {
     create_vdd_monitor() {
       std::string response;
       if (!execute_pipe_command(kVddPipeName, L"CREATEMONITOR", &response)) {
-        BOOST_LOG(error) << "创建虚拟显示器失败";
+        BOOST_LOG(error) << "Failed to create the virtual display.";
         return false;
       }
 #if defined SUNSHINE_TRAY && SUNSHINE_TRAY >= 1
       system_tray::update_tray_vmonitor_checked(1);
 #endif
-      BOOST_LOG(info) << "创建虚拟显示器完成，响应: " << response;
+      BOOST_LOG(info) << "Virtual display created successfully. Response:" << response;
       return true;
     }
 
@@ -177,13 +177,13 @@ namespace display_device {
     destroy_vdd_monitor() {
       std::string response;
       if (!execute_pipe_command(kVddPipeName, L"DESTROYMONITOR", &response)) {
-        BOOST_LOG(error) << "销毁虚拟显示器失败";
+        BOOST_LOG(error) << "Failed to close the virtual display.";
         return false;
       }
 #if defined SUNSHINE_TRAY && SUNSHINE_TRAY >= 1
       system_tray::update_tray_vmonitor_checked(0);
 #endif
-      BOOST_LOG(info) << "销毁虚拟显示器完成，响应: " << response;
+      BOOST_LOG(info) << "Virtual display successfully closed. Response:" << response;
       return true;
     }
 
@@ -212,11 +212,11 @@ namespace display_device {
       auto now = std::chrono::steady_clock::now();
 
       if (now - last_toggle_time < debounce_interval) {
-        BOOST_LOG(debug) << "忽略快速重复的显示器开关请求，请等待"
+        BOOST_LOG(debug) << "Ignoring rapid repeated requests to toggle the display. Please wait."
                          << std::chrono::duration_cast<std::chrono::seconds>(
                               debounce_interval - (now - last_toggle_time))
                               .count()
-                         << "秒";
+                         << " seconds";
         return;
       }
 
@@ -228,16 +228,16 @@ namespace display_device {
             // Windows弹窗确认
             auto future = std::async(std::launch::async, []() {
               return MessageBoxW(nullptr,
-                       L"已创建虚拟显示器，是否继续使用？\n\n"
-                       L"如不确认，20秒后将自动关闭显示器",
-                       L"显示器确认",
+                       L"Virtual display created. Continue using it?",
+                       L"If no response, the display will automatically close in 20 seconds.",
+                       L"Display Confirmation",
                        MB_YESNO | MB_ICONQUESTION) == IDYES;
             });
 
             // 等待20秒超时
             if (future.wait_for(std::chrono::seconds(20)) != std::future_status::ready || !future.get()) {
-              BOOST_LOG(info) << "用户未确认或超时，自动销毁虚拟显示器";
-              HWND hwnd = FindWindowW(L"#32770", L"显示器确认");
+              BOOST_LOG(info) << "The virtual display will automatically close if the user does not respond or the confirmation times out.";
+              HWND hwnd = FindWindowW(L"#32770", L"Display Confirmation");
               if (hwnd && IsWindow(hwnd)) {
                 // 发送退出命令并等待窗口关闭
                 PostMessage(hwnd, WM_COMMAND, MAKEWPARAM(IDNO, BN_CLICKED), 0);
@@ -249,14 +249,14 @@ namespace display_device {
 
                 // 如果窗口还存在，尝试强制关闭
                 if (IsWindow(hwnd)) {
-                  BOOST_LOG(warning) << "无法正常关闭确认窗口，尝试终止窗口进程";
+                  BOOST_LOG(warning) << "Failed to close the confirmation window. Attempting to terminate the window process.";
                   EndDialog(hwnd, IDNO);
                 }
               }
               destroy_vdd_monitor();
             }
             else {
-              BOOST_LOG(info) << "用户确认保留虚拟显示器";
+              BOOST_LOG(info) << "User confirmed to keep the virtual display.";
             }
           }).detach();
         }

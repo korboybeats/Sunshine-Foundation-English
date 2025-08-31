@@ -32,7 +32,7 @@ const displayDevices = computed(() =>
     }}</label>
     <select id="output_name" class="form-select" v-model="config.output_name">
       <option value="">{{ $t("_common.autodetect") }}</option>
-      <option value="ZakoHDR"> 就是要用虚拟显示器～ </option>
+      <option value="ZakoHDR"> Use Virtual Display </option>
       <option
         v-for="device in displayDevices"
         :value="device.id"
