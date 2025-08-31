@@ -228,7 +228,7 @@ namespace display_device {
             // Windows弹窗确认
             auto future = std::async(std::launch::async, []() {
               return MessageBoxW(nullptr,
-                       L"Virtual display created. Continue using it?",
+                       L"Virtual display created. Continue using it?\n"
                        L"If no response, the display will automatically close in 20 seconds.",
                        L"Display Confirmation",
                        MB_YESNO | MB_ICONQUESTION) == IDYES;
